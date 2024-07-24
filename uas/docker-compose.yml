@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mysql_perpustakaan:
+    image: mariadb:10.2
+    container_name: mysql_perpustakaan
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/data:/var/lib/mysql
+      - ./database/conf.d:/etc/mysql/conf.d:ro
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123
+      MYSQL_ROOT_PASSWORD: 123
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    read_only: false
